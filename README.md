@@ -1,6 +1,6 @@
 # Google Drive Merge Tool
 
-This tool lets you upload a local file/directory to a Google Drive folder, handling file name merge conflicts. 
+This tool lets you upload a local file/directory to a Google Drive folder, handling file name merge conflicts. If the merge flag is used, files with the same name will not be uploaded. Nothing will be downloaded.
 
 I had my reasons for doing this.
 
