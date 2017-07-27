@@ -95,7 +95,7 @@ def uploadSingle(source, folderId, merge, dryRun):
   childId = None
   # Only check if we're merging or dryrun (for purposes of recursively searching)
   if merge or dryRun:
-    children = findChildrenInFolder(baseName, folderId)
+    children = findChildrenInFolder([baseName], folderId)
     if len(children) > 0:
       childId = children[0][1]
 
@@ -174,7 +174,6 @@ def uploadRecursive(source, folderId, merge, dryRun, fileId=None):
       for file in localFiles:
         uploadRecursive(os.path.join(source, file), newFileId, merge, dryRun)      
 
-
 # Returns a list of tuples with format (filename, fileId) that exist in remote
 # folder. An None fileId indicates that the remote file doesn't exist.
 def findChildrenInFolder(baseNames, folderId):
@@ -183,11 +182,8 @@ def findChildrenInFolder(baseNames, folderId):
   # Keep track of all children
   remoteChildren = []
 
-  # Convert single member to list
-  if type(baseNames) is str:
-    baseNames = [baseNames]
-
-  namesCopy = baseNames[:]
+  # Make copy
+  namesCopy = list(baseNames)
 
   while True:
     try:
